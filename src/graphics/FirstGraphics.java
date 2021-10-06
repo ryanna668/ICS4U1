@@ -16,7 +16,7 @@ public class FirstGraphics {
 	JFrame window;
 
 	FirstGraphics(){
-		window = new JFrame("HELLO THERE");
+		window = new JFrame("Welcome");
 		window.setSize(800,600);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
