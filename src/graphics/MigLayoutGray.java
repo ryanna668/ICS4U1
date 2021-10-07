@@ -17,10 +17,10 @@ import javax.swing.border.Border;
 
 import net.miginfocom.swing.MigLayout;
 
-public class MigLayoutColour {
+public class MigLayoutGray{
 
 	public static void main(String[] args) {
-		new MigLayoutColour();
+		new MigLayoutGray();
 	}
 
 	JLabel titleLab = new JLabel("University Application");
@@ -55,7 +55,7 @@ public class MigLayoutColour {
 	
 		
 
-	MigLayoutColour() {
+	public MigLayoutGray() {
 		JFrame frame = new JFrame("UniverityApplication.com");
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
