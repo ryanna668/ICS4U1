@@ -18,6 +18,7 @@ public class Mig1 {
 	}
 	
 	JLabel settingsLabel = new JLabel("Dashboard Settings");
+	
     JLabel nameLabel = new JLabel("Name:");
     JLabel zipLabel = new JLabel("Zip Code:");
     JLabel emailLabel = new JLabel("Email:");
