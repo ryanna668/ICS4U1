@@ -1,8 +1,9 @@
 /*
  * Ryanna Luo
  * Oct 7, 2021
- * One button that use two different ActionListeners
+ * One button that uses two different ActionListeners
  */
+
 package graphics;
 
 import java.awt.Color;
@@ -13,17 +14,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Event3 implements ActionListener {
+public class Event3 {
+	public static void main(String[] args) {
 
+		new Event3();
+
+	}
 	//global variables here
 	JFrame window;
 	JPanel panel;
-	JButton button;
 	int numClicks = 0;
-
-	public static void main(String[] args) {		
-		new Event3();	
-	}
 
 	Event3(){
 		//make JFrame...
@@ -33,8 +33,9 @@ public class Event3 implements ActionListener {
 
 		//set up panel
 		panel = new JPanel();
-		button = new JButton("Yes");
-		button.addActionListener(this); //step 1 and 3
+		JButton button = new JButton("Yes");
+		button.addActionListener(new MyAL()); //step 1 and 3
+		button.addActionListener(new MyAL2());
 
 		panel.add(button);
 		window.add(panel);
@@ -42,22 +43,31 @@ public class Event3 implements ActionListener {
 		//make visible
 		window.setVisible(true);
 	}
-	@Override
 
-	public void actionPerformed(ActionEvent e) {
+	//inner class
+	//step 2 - "Implements" means "use the interface..."
+	class MyAL implements ActionListener{
 
-		if(e.getActionCommand().equals("Exit")) {
-			window.dispose();
-		}
-
-		if(e.getSource()==button) {
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			// change background colour
 			panel.setBackground(Color.decode("#FFE6F2"));
 
+
+		}
+
+	}
+
+	class MyAL2 implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			// title change to # clicks
 			numClicks++;
 			window.setTitle("You have clicked the button: " + numClicks + " times!");
+
+			}
 		}
+
 	}
-}
 

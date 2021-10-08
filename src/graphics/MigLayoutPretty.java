@@ -1,3 +1,11 @@
+/*
+ * Ryanna Luo
+ * Oct 8, 2021
+ * This program is a simple university application form. 
+ * The fonts, colours and format are all customized.
+ * There is a separate class called MigLayoutGray that has no customization of the fonts and colours.
+ * The three buttons all work and have different actions.
+ */
 package graphics;
 
 import java.awt.BorderLayout;
@@ -24,6 +32,10 @@ import net.miginfocom.swing.MigLayout;
 public class MigLayoutPretty {
 
 	JPanel mainPanel = new JPanel();
+	JFrame frame = new JFrame();
+
+	Font fontp = new Font("Times New Roman", Font.PLAIN, 12);
+	Font fontb = new Font("Times New Roman", Font.BOLD, 12);;
 
 	public static void main(String[] args) {
 		new MigLayoutGray(); //separate class
@@ -38,7 +50,7 @@ public class MigLayoutPretty {
 	JLabel emailLab = new JLabel("Email:");
 	JLabel applyLab = new JLabel("Why are you the best fit for our school?: ");
 
-	JLabel Thanks = new JLabel("");
+	JLabel Thanks = new JLabel(" ");
 
 	JTextField fNameField = new JTextField(10);
 	JTextField lNameField = new JTextField(15);
@@ -46,7 +58,6 @@ public class MigLayoutPretty {
 	JTextField provinceField = new JTextField(10);
 	JTextField emailField = new JTextField(20);
 	JTextField applyField = new JTextField(25);
-
 
 	JPanel buttonPanel = new JPanel();
 
@@ -57,12 +68,12 @@ public class MigLayoutPretty {
 	JRadioButton j1 = new JRadioButton("yes"); 
 	JRadioButton j2 = new JRadioButton("no"); 
 
-	JLabel termsLab = new JLabel("Do you agree with the Terms and Conditions?");
+	JLabel termsLab = new JLabel("Do you agree with our Terms and Conditions?");
 
 	MigLayoutPretty() {
-		JFrame frame = new JFrame("UniverityApplication.com");
+		frame = new JFrame("UniverityApplication.com");
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		
+
 		buildMigDashboard();
 		frame.add(mainPanel);		
 		//frame.setSize(600, 500);
@@ -79,14 +90,11 @@ public class MigLayoutPretty {
 		j1.setBackground(Color.decode("#FFE6F2"));
 		j2.setBackground(Color.decode("#FFE6F2"));
 
-
 	}
-
-
 
 	private void buildMigDashboard() {
 		mainPanel.setLayout(new MigLayout());
-	
+
 		mainPanel.setBackground(Color.decode("#FFE6F2"));
 
 		mainPanel.add(titleLab, "span, center");
@@ -96,37 +104,45 @@ public class MigLayoutPretty {
 		infoLab.setFont(new Font("Times New Roman", Font.ITALIC, 12));
 
 		mainPanel.add(nameLab, "align label, wrap");
+		nameLab.setFont(fontb);
+
 		mainPanel.add(fNameField, "split");
+		fNameField.setFont(fontp);
 
 		//wrap keyword starts a new row (after this element)
 		mainPanel.add(lNameField, "wrap");
+		lNameField.setFont(fontp);
 
 		//align label triggers platform-specific label alignment
 		mainPanel.add(cityLab, "align label, wrap");
 		mainPanel.add(cityField, "wrap");
-		cityLab.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		cityLab.setFont(fontb);
+		cityField.setFont(fontp);
 
 		mainPanel.add(emailLab,"align label, wrap");
 		mainPanel.add(emailField, "span"); //span keyword lets emailField use the rest of the row
-		emailLab.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		emailLab.setFont(fontb);
+		emailField.setFont(fontp);
 
 		mainPanel.add(provinceLab, "align label, wrap");
 		mainPanel.add(provinceField, "span");
-		provinceLab.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		provinceLab.setFont(fontb);
+		provinceField.setFont(fontp);
 
 		mainPanel.add(applyLab, "align label, wrap");
 		mainPanel.add(applyField, "gapbottom 20, span");
-		applyLab.setFont(new Font("Times New Roman", Font.BOLD, 12)); 
+		applyLab.setFont(fontb);
+		applyField.setFont(fontp);
 
 		mainPanel.add(termsLab,"align left");
-		termsLab.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		termsLab.setFont(fontb);
 
 		ButtonGroup G = new ButtonGroup();
 		G.add(j1);
 		G.add(j2);
 
-		j1.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		j2.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		j1.setFont(fontb);
+		j2.setFont(fontb);
 
 		mainPanel.add(j1);
 		mainPanel.add(j2, "wrap, gapbottom 30");
@@ -134,33 +150,50 @@ public class MigLayoutPretty {
 
 		mainPanel.add(helpBttn, "align left, span");
 		mainPanel.add(cancelBttn);
-		mainPanel.add(submitBttn, "align right, span");
+		mainPanel.add(submitBttn, "span");
 
-		helpBttn.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		cancelBttn.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		submitBttn.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		helpBttn.setFont(fontp);
+		cancelBttn.setFont(fontp);
+		submitBttn.setFont(fontb);
 
 		mainPanel.add(Thanks);
 		Thanks.setFont(new Font("Times New Roman", Font.ITALIC, 12));
 
-		submitBttn.addActionListener(new MyAL()); 
-
+		submitBttn.addActionListener(new submitAL()); 
+		cancelBttn.addActionListener(new cancelAL()); 
+		helpBttn.addActionListener(new helpAL());
 	}
 
-	class MyAL implements ActionListener{
+	class submitAL implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// change background colour
-			Thanks.setText("Thank you for filling out this application. Your response has been recorded.");
-
-
+			Thanks.setText("Thank you. Your response has been recorded.");
 		}
 
 	}
+	class cancelAL implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			if(e.getActionCommand().equals("Cancel")) {
+				frame.dispose();
+
+			}
+		}
+	}
+	class helpAL implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Thanks.setText("Please contact the school at university@gmail.com");
+
+		}
+	}
 
 }
+
 
 
 
