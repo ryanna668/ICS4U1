@@ -25,10 +25,12 @@ public class Event4 implements ChangeListener{
 		new Event4();
 	}
 
+	Color pink = Color.decode("#FFE6F2");
+	
 	Event4() {
 		//make JFrame
 		window = new JFrame("Slider Program Yay");
-		window.setSize(500,200);
+		window.setSize(300,200);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//make panel
@@ -36,9 +38,9 @@ public class Event4 implements ChangeListener{
 		panel.setBackground(Color.decode("#FFE6F2"));
 
 		//make slider
-		slider = new JSlider(0, 50, 0);
-		slider.setMajorTickSpacing(10);
-		slider.setMinorTickSpacing(1);
+		slider = new JSlider(0, 255, 100);
+		slider.setMajorTickSpacing(40);
+		//slider.setMinorTickSpacing(1);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		slider.setBackground(Color.decode("#FFE6F2"));
@@ -62,12 +64,15 @@ public class Event4 implements ChangeListener{
 		//set visibility
 		window.setVisible(true);
 		
-		slider.addChangeListener(new ChangeListener() {
-			
-	            public void stateChanged(ChangeEvent e) {
-	                label1.setText("Value of the slider is: " + ((JSlider)e.getSource()).getValue());
-	            }
-	        });
+		slider.addChangeListener(this);
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		int v = ((JSlider)e.getSource()).getValue();
+		 label1.setText("Value of the slider is: " + ((JSlider)e.getSource()).getValue()  );
+		 Color c = new Color(Color.HSBtoRGB((227.0f/255), (v/255.0f), 1.0f));
+		 panel.setBackground(c);
 	}
 }
 	
