@@ -1,3 +1,12 @@
+/*
+ * Ryanna Luo
+ * Oct 17, 2021
+ * This is my fourth program using Action Listeners. Let me know if you want to see the other three.
+ * Event4 uses a slider component. The text at the top tells you where the slider is at.
+ * Label is positioned using border layout.
+ * The slider number corresponds with the saturation of the pink background.
+ */
+
 package graphics;
 
 import java.awt.BorderLayout;
