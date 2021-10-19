@@ -22,7 +22,7 @@ public class FirstDrawing {
 	}
 
 	//Global variables
-	int panW = 800, panH = 800;
+	int panW = 800, panH = 700;
 	
 
 	FirstDrawing(){
