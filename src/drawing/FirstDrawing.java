@@ -7,6 +7,7 @@ import java.awt.BasicStroke;
 /* showing how to draw using Swing */
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -66,7 +67,7 @@ public class FirstDrawing {
 			g2.fillOval(725, 180, 50,50);
 
 			//clay colour
-			g.setColor(Color.decode("#D49A89"));
+			g2.setColor(Color.decode("#D49A89"));
 			g2.drawRect (0, 500, 800, 100);
 			g2.fillRect (0, 500, 800, 100);
 
@@ -90,6 +91,13 @@ public class FirstDrawing {
 			g2.drawOval(575, 100, 50,50);
 
 			g2.fillOval(575, 180, 50,50);
+			
+			g.setColor(Color.decode("#F7D1BA"));
+			g2.fillOval(10, 10, 50,50);
+			
+			g.setColor(new Color(212, 154, 137,70));
+			g2.fillOval(35, 10, 50,50);
+				
 
 			//lines
 			g2.setColor(Color.decode("#F7D1BA"));
@@ -100,8 +108,20 @@ public class FirstDrawing {
 			g2.setStroke(new BasicStroke(1));
 			g2.drawLine(0,340,400,340);
 
+			//strings
+			g2.setFont(new Font("Helvetica", Font.BOLD, 18));
+			g.setColor(Color.decode("#D49A89"));
+			g2.drawString( "That looks like a pastel version of the mastercard logo", 10,90);
 
+			g2.setColor(Color.decode("#F7D1BA"));
+			g2.drawString( "Have a great day", 10,120);
 
+			g2.setColor(Color.decode("#557571"));
+			g2.drawString( "I hope you enjoy my colour palette", 10,150);
+			
+	
+			
+			
 		}
 
 	}	
