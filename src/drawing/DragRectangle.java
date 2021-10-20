@@ -35,12 +35,14 @@ public class DragRectangle extends JFrame implements MouseListener, MouseMotionL
 	int scrW=400, scrH=400;	//screen width and height
 	DrawingPanel panel;
 	int mx1,mx2,my1,my2;	//initial and final mouse points
-	boolean dragging = false;
-	Color foreColour = Color.GREEN.darker(); 
-	Color backColour = Color.WHITE;
-	Color stretchColour = Color.RED;
+	boolean dragging = false; // set dragging to false, because you are not dragging in the beginning
+	Color foreColour = Color.GREEN.darker(); //setting colour of the drawn rectangles
+	Color backColour = Color.WHITE; // setting colour of background
+	Color stretchColour = Color.RED; // setting colour of rectangle while dragging
 	
 	DragRectangle() {
+		
+		//making and setting up the panel
 		this.setTitle("Dragging a rectangle");
 		this.setSize(scrW,scrH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +63,7 @@ public class DragRectangle extends JFrame implements MouseListener, MouseMotionL
 		
 		//constructor
 		DrawingPanel(){
-			mx1=mx2=my1=my2=-1;			
+			mx1=mx2=my1=my2=-1;		// so it doesn't show at the beginning
 		}
 		
 		public void paintComponent(Graphics g) {
@@ -97,6 +99,7 @@ public class DragRectangle extends JFrame implements MouseListener, MouseMotionL
 			}	
 			
 //TODO:			ADD CODE HERE for different directions
+			
 			g.drawRect(mx1,my1,mw,mh);
 			
 			if (dragging) {
@@ -125,8 +128,8 @@ public class DragRectangle extends JFrame implements MouseListener, MouseMotionL
 	
 	public void mouseMoved(MouseEvent e) { }
 	public void mouseDragged(MouseEvent e) { 
-		dragging=true;
-		mx2 = e.getX();
+		dragging=true; // since it was false before, make it true when mouse starts to drag
+		mx2 = e.getX(); 
 		my2 = e.getY();		
 		panel.repaint();
 	}
