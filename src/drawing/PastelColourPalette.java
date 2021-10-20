@@ -1,6 +1,6 @@
-//Useful Drawing Code
-//Useful Drawing Code
-//As done in class, Monday 18 Oct
+/*
+ * 
+ */
 package drawing;
 import java.awt.BasicStroke;
 //	ICS4U1
@@ -15,17 +15,17 @@ import java.awt.RenderingHints;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class FirstDrawing {
+public class PastelColourPalette {
 
 	public static void main(String[] args) {
-		new FirstDrawing();
+		new PastelColourPalette();
 	}
 
 	//Global variables
 	int panW = 800, panH = 700;
 	
 
-	FirstDrawing(){
+	PastelColourPalette(){
 		//setup JFrame
 		JFrame window = new JFrame("Welcome To My Pastel Palette :)");		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +80,7 @@ public class FirstDrawing {
 			g2.fillOval(650, 180, 50,50);
 
 			//peach colour
-			g.setColor(Color.decode("#F7D1BA"));
+			g2.setColor(Color.decode("#F7D1BA"));
 			g2.drawRect (0, 400, 800, 100);
 			g2.fillRect (0, 400, 800, 100);
 
@@ -92,10 +92,10 @@ public class FirstDrawing {
 
 			g2.fillOval(575, 180, 50,50);
 			
-			g.setColor(Color.decode("#F7D1BA"));
+			g2.setColor(Color.decode("#F7D1BA"));
 			g2.fillOval(10, 10, 50,50);
 			
-			g.setColor(new Color(212, 154, 137,70));
+			g2.setColor(new Color(212, 154, 137,70));
 			g2.fillOval(35, 10, 50,50);
 				
 
@@ -110,7 +110,7 @@ public class FirstDrawing {
 
 			//strings
 			g2.setFont(new Font("Helvetica", Font.BOLD, 18));
-			g.setColor(Color.decode("#D49A89"));
+			g2.setColor(Color.decode("#D49A89"));
 			g2.drawString( "That looks like a pastel version of the mastercard logo", 10,90);
 
 			g2.setColor(Color.decode("#F7D1BA"));
@@ -119,6 +119,10 @@ public class FirstDrawing {
 			g2.setColor(Color.decode("#557571"));
 			g2.drawString( "I hope you enjoy my colour palette", 10,150);
 			
+			g2.setFont(getFont());
+			g2.drawString( "Here is the original font", 10,180);
+			
+			g2.drawRect(10, 200, 100, 20);
 	
 			
 			
