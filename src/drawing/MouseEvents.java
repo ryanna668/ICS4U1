@@ -41,7 +41,7 @@ public class MouseEvents implements MouseListener, MouseMotionListener {
 
 		window.add(panel);
 		window.pack(); 		//sets optimum size
-		window.setLocationRelativeTo(null);  //centre on screen
+		window.setLocationRelativeTo(null);  //center on screen
 		window.setVisible(true);
 	}
 
