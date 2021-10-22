@@ -74,8 +74,8 @@ public class DragRectangle extends JFrame implements MouseListener, MouseMotionL
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 			//	g.setColor(backColour);
-			int mw = mx2-mx1; 
-			int mh = my2-my1;	
+			int mw = mx2-mx1; //width of rectangle
+			int mh = my2-my1; // height of rectangle
 
 			if (dragging) {				
 				/* If you just try and draw a white rectangle, it erases all other rectangles too. Use XOR mode */
@@ -85,58 +85,87 @@ public class DragRectangle extends JFrame implements MouseListener, MouseMotionL
 				g2.setXORMode(this.getBackground());
 				g2.setColor(stretchColour);
 
-				//erase old rectangle
+				//erase old rectangle (up and right)
 				if (prevw > 0 && prevh < 0) { 
 					g.drawRect(mx1,my1+prevh,prevw,-prevh);
 
 					//TODO: some other code needed here (other if else statements)
 				}
-					else {	//down and right works			
-						g.drawRect(mx1, my1,prevw,prevh);
-					}
-
-				} 
-
-				else {
-					g2.setPaintMode();
-					g2.setColor(foreColour);
-					g2.setStroke(stroke);
-				}	
-
-				//TODO:			ADD CODE HERE for different directions
-
-
-				g.drawRect(mx1,my1,mw,mh);
-
-				if (dragging) {
-					prevx = mx1; prevy = my1;
-					prevw = mw;  prevh = mh;
-				} else {
-					prevx = prevy = 0;
-					prevw = prevh = 0;
+			
+				//down and left
+				else if(prevw<0 && prevh>0) {
+				g.drawRect(mx1+prevw,my1,-prevw,prevh);
+					
 				}
-			}		
-		}
+				
+				//up and left
+				else if(prevw<0 && prevh<0) {
+					g.drawRect(mx1+prevw,my1+prevh,-prevw,-prevh);
+				}
+				
+				else {	//down and right	(prevw>0 prevh>0)	
+					g.drawRect(mx1, my1,prevw,prevh);
+				}
 
-		public void mouseEntered(MouseEvent e) { }
-		public void mouseExited(MouseEvent e) { }
-		public void mouseClicked(MouseEvent e) {}
+			} 
 
-		//this is where the first point of the rectangle is drawn
-		public void mousePressed(MouseEvent e) {
-			mx1=e.getX(); //x an integer indicating horizontal position relative to the component
-			my1=e.getY(); //y an integer indicating horizontal position relative to the component
-		}
-		public void mouseReleased(MouseEvent e) {
-			dragging=false;
-			panel.repaint();
-		}
+			else {
+				g2.setPaintMode();
+				g2.setColor(foreColour);
+				g2.setStroke(stroke);
+			}	
 
-		public void mouseMoved(MouseEvent e) { }
-		public void mouseDragged(MouseEvent e) { 
-			dragging=true; // since it was false before, make it true when mouse starts to drag
-			mx2 = e.getX(); //The horizontal x position of the event relative to the source component
-			my2 = e.getY();	//The vertical y position of the event relative to the source component.
-			panel.repaint();
-		}
+		//TODO:			ADD CODE HERE for different directions
+			//down right
+			if (prevw > 0 && prevh > 0) {
+				g.drawRect(mx1,my1,mw,mh);
+			}
+			
+			//up right
+			if (prevw > 0 && prevh < 0) {
+				g.drawRect(mx1,my1+mh,mw,-mh);
+			}
+			
+			//down left
+			if (prevw < 0 && prevh > 0) {
+				g.drawRect(mx1+mw,my1,-mw,mh);
+			}
+			
+			//up left
+			if (prevw < 0 && prevh < 0) {
+				g.drawRect(mx1+mw,my1+mh,-mw,-mh);
+			}
+
+
+			if (dragging) {
+				prevx = mx1; prevy = my1;
+				prevw = mw;  prevh = mh;
+			} else {
+				prevx = prevy = 0;
+				prevw = prevh = 0;
+			}
+		}		
 	}
+
+	public void mouseEntered(MouseEvent e) { }
+	public void mouseExited(MouseEvent e) { }
+	public void mouseClicked(MouseEvent e) {}
+
+	//this is where the first point of the rectangle is drawn
+	public void mousePressed(MouseEvent e) {
+		mx1=e.getX(); //x an integer indicating horizontal position relative to the component
+		my1=e.getY(); //y an integer indicating horizontal position relative to the component
+	}
+	public void mouseReleased(MouseEvent e) {
+		dragging=false;
+		panel.repaint();
+	}
+
+	public void mouseMoved(MouseEvent e) { }
+	public void mouseDragged(MouseEvent e) { 
+		dragging=true; // since it was false before, make it true when mouse starts to drag
+		mx2 = e.getX(); //The horizontal x position of the event relative to the source component
+		my2 = e.getY();	//The vertical y position of the event relative to the source component.
+		panel.repaint();
+	}
+}

@@ -54,7 +54,7 @@ public class TimerRotate2 implements KeyListener{
 	int time;       //just to display elapsed time. This should be compared with System.currentTimeMillis()
 
 	//Other objects and variables
-	drawing.Line line = new drawing.Line(100.0, 100.0, 300.0, 300.0); 
+	Line line = new Line(100.0, 100.0, 300.0, 300.0); 
 
 	double angle = Math.toRadians(0.005);
 
@@ -115,9 +115,7 @@ public class TimerRotate2 implements KeyListener{
 			this.setBackground(Color.WHITE);
 		}
 
-		/***************************/
-		/*  Draw all objects here  */
-		/***************************/
+		// Draw object heres
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g); //clears the screen and repaints it
@@ -132,35 +130,21 @@ public class TimerRotate2 implements KeyListener{
 			// Rotating with a positive angle theta rotates points on the positive x axis toward the positive y axis,
 			// exactly the same as in math, but here +y is down so the rotation goes in the opposite direction.
 			g2.rotate(angle, line.cx, line.cy);                       
-			line.paint(g);
-			g2.rotate(-angle, line.cx, line.cy);
-
-
-			/* OR: using an AffineTransform */
-
-//			AffineTransform transform = new AffineTransform();
-//			transform.rotate(angle, line.cx, line.cy);
-//			AffineTransform old = g2.getTransform();
-//			g2.transform(transform);
-//			line.paint(g);                        
-//			g2.setTransform(old);
-
-			/******************/
-			/*  END ROTATING  */
-			/******************/
-
-
-
-
-			g.drawString("TIME1=" + time*t_speed, 50,50);
+			g2.drawLine(100,100,200,200);
+			g2.rotate(angle, line.cx, line.cy);  
+			g2.drawRect(100,100,200,300);
+			
+			
+			
+			
+			//g2.rotate(-angle, line.cx, line.cy);
+			//g.drawString("TIME1=" + time*t_speed, 50,50);
 
 			g2.dispose(); //only dispose of graphics objects that you have created
 		}
 	}
 
-	/****************************/
-	/* All event listeners here */
-	/****************************/
+	//Event Listeners Here
 
 	@Override
 	public void keyPressed(KeyEvent e) {
