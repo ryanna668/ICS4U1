@@ -35,11 +35,12 @@ public class TicTacToe {
 	/*** you can set this to any size, but the winning only works for the top 3x3 corner ***/
 
 
-	final static Color COLOURGRID = new Color(140, 140,140);	
-	final static Color COLOURBACK = new Color(240, 240, 240);
+	final static Color COLOURGRID = (Color.decode("#ffffff"));	
+	final static Color COLOURBACK = (Color.pink);
 
 	final static int XX = 1;
 	final static int OO = -1;
+	final static int EMPTY = 0;
 
 	//GLOBAL VARIABLES
 	final static int WINW = 600;
@@ -47,7 +48,9 @@ public class TicTacToe {
 
 	int [][]board = new int [GRID][GRID];
 	JFrame frame = new JFrame();
-	
+
+	boolean turnX = true;
+
 
 
 	public static void main(String[] args) {
@@ -58,10 +61,7 @@ public class TicTacToe {
 		initGame();		
 		createAndShowGUI();
 		
-		board[0][0] = XX;
-		board[1][1] = OO;
-		board[1][0] = XX;
-	
+
 	}
 
 	//This will reset the board if you want to play again.
@@ -139,6 +139,7 @@ public class TicTacToe {
 
 			//TODO Draw grid
 			g.setColor(COLOURGRID);	
+			g2.setStroke(new BasicStroke(2));
 
 			for(int i=1; i < GRID; i++) {
 				//horizontal
@@ -152,26 +153,32 @@ public class TicTacToe {
 
 			//TODO draw all X and Os
 
-			
-	
+
+
 			//Check every square in board[][] and draw an X or O there.
 			//Try and resize the window while playing. Everything works. 
-			g.setColor(Color.RED);
+			g2.setStroke(new BasicStroke(4));
+			g2.setColor(Color.decode("#ffffff"));
+
 			for (int row = 0; row<GRID;row++) {
 				for (int col = 0; col<GRID;col++) {
 					if( (board[row][col]==XX)) {
 						//draw an X
-						g.drawLine(boxW, boxH, boxH*row, boxW*col);
-						g.drawLine(boxW*row, boxH, boxW, boxW*col);
-			
+						g2.drawLine((col*boxW)+30,(row*boxH)+30,((col+1)*boxW)-30,(row+1)*boxH-30);
+						g2.drawLine((col*boxW)+30, (row+1)*boxH-30, ((col+1)*boxW)-30, (row*boxH)+30);
+
+						//g2.drawLine(((col+1)*boxW),row*boxH,col*boxW,(row+1)*boxH);
+
 					}
+					//draw O
 					if( (board[row][col]==OO)) {
 						//for drawing x is first, x is column
-						g.drawOval(col*boxW,row*boxH, boxW, boxH);
+
+						g2.drawOval(col*boxW+25,row*boxH+25, boxW-50, boxH-50);
 					}
 				}
 			}
-			
+
 
 
 
@@ -188,13 +195,15 @@ public class TicTacToe {
 			int x = e.getX();
 			int y = e.getY();
 
+
 			//calculate which square you clicked on
-			int i,j;
+			int col = x/boxW;
+			int row = y/boxH;
 
 			//TODO display mouse coords and grid square in title.
 			frame.setTitle(x+ "," + y
-					//+ "  ("+ row + "," + col + ")"
-					
+					+ "  ("+ row + "," + col + ")"
+
 					);
 
 			//how to check if click right mouse button
@@ -206,22 +215,35 @@ public class TicTacToe {
 
 
 			//TODO Check if the square is empty
+			if (board[row][col] != EMPTY)return;
 
 
 			//TODO update board
+			if(turnX) {
+				board[row][col] = XX;
+			}
+			else {
+				board[row][col] = OO;
+				
+			}
+			turnX=!turnX;
 
+			//printBoard(); //debug
 
 			//TODO check for the winner
+		
 
 			//TODO check for tie
 
 			//TODO change turn
 
 
+
 			this.repaint();
 			printBoard();
-		}	
 
+
+		}
 		@Override
 		public void mousePressed(MouseEvent e) {}
 		@Override

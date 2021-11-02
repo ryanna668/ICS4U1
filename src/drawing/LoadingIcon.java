@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +44,9 @@ public class LoadingIcon implements KeyListener{
 	/****************
 	 *  Variables   *
 	 ****************/
-	
+	Rectangle rect = new Rectangle(200,200,100,100);
+	int lineX = 200;
+	int lineY = 200;
 	//int panW = 800, panH = 700;
 	
 	//Window stuff
@@ -137,14 +140,15 @@ public class LoadingIcon implements KeyListener{
 			g2.rotate(angle, line.cx, line.cy); 
 			g2.setColor(Color.decode("#D49A89"));
 			g2.setStroke(new BasicStroke(4));
-			g2.drawLine(100,100,200,200);
+			g2.drawLine(lineX,lineY, 100,100);
 			
 			g2.setColor(Color.decode("#557571"));
 			g2.rotate(angle, line.cx, line.cy);  
-			g2.fillRect(250,200, 50, 50);
+			g2.fillRect(rect.x,rect.y, rect.width, rect.height);
 			
+			g2.drawLine(rect.x, rect.y, lineX,lineY);
 			
-			
+			g2.drawLine(rect.x+rect.width, rect.y+rect.height, lineX,lineY);
 			
 			//g2.rotate(-angle, line.cx, line.cy);
 			//g.drawString("TIME1=" + time*t_speed, 50,50);
