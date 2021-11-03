@@ -126,7 +126,7 @@ public class LoadingIcon implements KeyListener{
 		// Draw object heres
 		@Override
 		public void paintComponent(Graphics g) {
-			//super.paintComponent(g); //clears the screen and repaints it
+			super.paintComponent(g); //clears the screen and repaints it
 
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
