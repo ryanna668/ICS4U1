@@ -126,7 +126,7 @@ public class LoadingIcon implements KeyListener{
 		// Draw object heres
 		@Override
 		public void paintComponent(Graphics g) {
-			super.paintComponent(g); //clears the screen and repaints it
+			//super.paintComponent(g); //clears the screen and repaints it
 
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -138,11 +138,12 @@ public class LoadingIcon implements KeyListener{
 			// Rotating with a positive angle theta rotates points on the positive x axis toward the positive y axis,
 			// exactly the same as in math, but here +y is down so the rotation goes in the opposite direction.
 			g2.rotate(angle, line.cx, line.cy); 
-			g2.setColor(Color.decode("#D49A89"));
-			g2.setStroke(new BasicStroke(4));
-			g2.drawLine(lineX,lineY, 100,100);
-			
 			g2.setColor(Color.decode("#557571"));
+			g2.setStroke(new BasicStroke(4));
+			g2.drawLine(100,100,lineX,lineY );
+			
+			
+			g2.setColor(new Color(212, 154, 137,70));
 			g2.rotate(angle, line.cx, line.cy);  
 			g2.fillRect(rect.x,rect.y, rect.width, rect.height);
 			
