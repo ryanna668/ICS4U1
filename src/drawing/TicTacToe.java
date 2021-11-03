@@ -1,6 +1,9 @@
 package drawing;
 
+
+
 import java.awt.BasicStroke;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -10,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,6 +55,9 @@ public class TicTacToe {
 
 	boolean turnX = true;
 
+	boolean keepwinning = true;
+	boolean changetitle = true;
+	int filled = 0;
 
 
 	public static void main(String[] args) {
@@ -60,9 +67,10 @@ public class TicTacToe {
 	TicTacToe() {	
 		initGame();		
 		createAndShowGUI();
-		
+
 
 	}
+
 
 	//This will reset the board if you want to play again.
 	//It will be called from the method that checks if you win. If the game is over, reset and then play again
@@ -71,7 +79,7 @@ public class TicTacToe {
 	}
 
 	void createAndShowGUI() {
-		frame = new JFrame("TicTacToe");			
+		frame = new JFrame("Welcome to TicTacToe! Have Fun!");			
 		Container content = frame.getContentPane();
 		content.setBackground(Color.BLUE);
 		content.setLayout(new BorderLayout(2,2));
@@ -187,7 +195,7 @@ public class TicTacToe {
 
 
 
-
+		//FIXME why does it take two clicks?
 
 		//******************* MouseListener methods *****************//
 		@Override
@@ -201,14 +209,24 @@ public class TicTacToe {
 			int row = y/boxH;
 
 			//TODO display mouse coords and grid square in title.
+			if(changetitle) {
 			frame.setTitle(x+ "," + y
 					+ "  ("+ row + "," + col + ")"
 
 					);
-
+			}
 			//how to check if click right mouse button
 			if (e.getButton() == MouseEvent.BUTTON3) {
-				//do something
+				//restart the game
+				for(int p = 0; p<GRID; p++) {
+					for(int q = 0; q<GRID; q++) {
+						board[p][q]=0;
+					}
+				}
+				
+				frame.setTitle("Welcome to TicTacToe! Have fun!");
+				keepwinning = true;
+				changetitle = true;
 			}
 
 			/*** put these in methods, maybe one master method ***/
@@ -224,16 +242,55 @@ public class TicTacToe {
 			}
 			else {
 				board[row][col] = OO;
-				
+
 			}
 			turnX=!turnX;
 
 			//printBoard(); //debug
 
 			//TODO check for the winner
-		
+
+			//check rows
+			if(keepwinning) {
+				for(int i = 0; i < 3; i++) {
+					if(board[i][0]+ board[i][1] + board[i][2] == 3 || //rows
+							board[0][i] + board[1][i] + board[2][i] == 3 || //columns
+							board[0][0] + board[1][1]+ board[2][2] == 3 || // diagonal
+							board[2][0] + board [1][1] + board[0][2] == 3) //diagonal
+					{
+						frame.setTitle("X wins!! Right click to restart :)");
+						keepwinning = false;
+
+					}
+					else if(board[i][0] + board[i][1] + board[i][2] == -3 || 
+							board[0][i] + board[1][i] + board[2][i] == - 3 ||
+							board[0][0] + board[1][1]+ board[2][2] == -3 ||
+							board[2][0] + board [1][1] + board[0][2] == -3) {
+						frame.setTitle("O wins!! Right click to restart :)");
+						keepwinning = false;
+					}
+				}
+
+			}
+
+
 
 			//TODO check for tie
+
+			for (int r = 0; r<GRID;r++) {
+				for (int c = 0; c<GRID; c++) {
+					if (board[r][c] != EMPTY) {
+						filled++;
+					};
+				}
+			}
+			
+			// frame.setTitle("#" + filled); debugging
+			
+			if(filled == 45) {
+				frame.setTitle("Tie!! Right click to restart :)");
+				changetitle = false;
+			}
 
 			//TODO change turn
 
@@ -241,9 +298,11 @@ public class TicTacToe {
 
 			this.repaint();
 			printBoard();
-
-
+			
 		}
+
+
+		
 		@Override
 		public void mousePressed(MouseEvent e) {}
 		@Override
