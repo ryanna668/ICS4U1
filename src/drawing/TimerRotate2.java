@@ -129,7 +129,7 @@ public class TimerRotate2 implements KeyListener{
 			
 			// Rotating with a positive angle theta rotates points on the positive x axis toward the positive y axis,
 			// exactly the same as in math, but here +y is down so the rotation goes in the opposite direction.
-			g2.rotate(angle, line.cx, line.cy);                       
+			g2.rotate(angle, line.cx, line.cy);                        
 			g2.drawLine(100,100,200,200);
 			g2.rotate(angle, line.cx, line.cy);  
 			g2.drawRect(100,100,200,300);
