@@ -200,6 +200,7 @@ public class TicTacToe {
 		//******************* MouseListener methods *****************//
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			
 			int x = e.getX();
 			int y = e.getY();
 
@@ -227,6 +228,7 @@ public class TicTacToe {
 				frame.setTitle("Welcome to TicTacToe! Have fun!");
 				keepwinning = true;
 				changetitle = true;
+				filled = 0;
 			}
 
 			/*** put these in methods, maybe one master method ***/
@@ -237,6 +239,7 @@ public class TicTacToe {
 
 
 			//TODO update board
+			if(e.getButton() == MouseEvent.BUTTON1) {
 			if(turnX) {
 				board[row][col] = XX;
 			}
@@ -245,6 +248,7 @@ public class TicTacToe {
 
 			}
 			turnX=!turnX;
+			}
 
 			//printBoard(); //debug
 
@@ -281,11 +285,11 @@ public class TicTacToe {
 				for (int c = 0; c<GRID; c++) {
 					if (board[r][c] != EMPTY) {
 						filled++;
-					};
+					}
 				}
 			}
 			
-			// frame.setTitle("#" + filled); debugging
+			frame.setTitle("#" + filled); //debugging
 			
 			if(filled == 45) {
 				frame.setTitle("Tie!! Right click to restart :)");
