@@ -200,7 +200,7 @@ public class TicTacToe {
 		//******************* MouseListener methods *****************//
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			
+
 			int x = e.getX();
 			int y = e.getY();
 
@@ -211,10 +211,10 @@ public class TicTacToe {
 
 			//TODO display mouse coords and grid square in title.
 			if(changetitle) {
-			frame.setTitle(x+ "," + y
-					+ "  ("+ row + "," + col + ")"
+				frame.setTitle(x+ "," + y
+						+ "  ("+ row + "," + col + ")"
 
-					);
+						);
 			}
 			//how to check if click right mouse button
 			if (e.getButton() == MouseEvent.BUTTON3) {
@@ -224,7 +224,7 @@ public class TicTacToe {
 						board[p][q]=0;
 					}
 				}
-				
+
 				frame.setTitle("Welcome to TicTacToe! Have fun!");
 				keepwinning = true;
 				changetitle = true;
@@ -239,15 +239,17 @@ public class TicTacToe {
 
 
 			//TODO update board
-			if(e.getButton() == MouseEvent.BUTTON1) {
-			if(turnX) {
-				board[row][col] = XX;
-			}
-			else {
-				board[row][col] = OO;
+			if(changetitle) {
+				if(e.getButton() == MouseEvent.BUTTON1) {
+					if(turnX) {
+						board[row][col] = XX;
+					}
+					else {
+						board[row][col] = OO;
 
-			}
-			turnX=!turnX;
+					}
+					turnX=!turnX;
+				}
 			}
 
 			//printBoard(); //debug
@@ -264,6 +266,7 @@ public class TicTacToe {
 					{
 						frame.setTitle("X wins!! Right click to restart :)");
 						keepwinning = false;
+						changetitle= false;
 
 					}
 					else if(board[i][0] + board[i][1] + board[i][2] == -3 || 
@@ -272,6 +275,7 @@ public class TicTacToe {
 							board[2][0] + board [1][1] + board[0][2] == -3) {
 						frame.setTitle("O wins!! Right click to restart :)");
 						keepwinning = false;
+						changetitle= false;
 					}
 				}
 
@@ -288,12 +292,13 @@ public class TicTacToe {
 					}
 				}
 			}
-			
-			frame.setTitle("#" + filled); //debugging
-			
-			if(filled == 45) {
-				frame.setTitle("Tie!! Right click to restart :)");
-				changetitle = false;
+
+			//frame.setTitle("#" + filled); //debugging
+			if(changetitle) {
+				if(filled == 45) {
+					frame.setTitle("Tie!! Right click to restart :)");
+					changetitle = false;
+				}
 			}
 
 			//TODO change turn
@@ -302,11 +307,11 @@ public class TicTacToe {
 
 			this.repaint();
 			printBoard();
-			
+
 		}
 
 
-		
+
 		@Override
 		public void mousePressed(MouseEvent e) {}
 		@Override
