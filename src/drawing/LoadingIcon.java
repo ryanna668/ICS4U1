@@ -126,10 +126,18 @@ public class LoadingIcon implements KeyListener{
 
 
 		@Override
+<<<<<<< HEAD
 
 
 		public void paintComponent(Graphics g) { 
 
+=======
+<<<<<<< HEAD
+		public void paintComponent(Graphics g) {
+=======
+		public void paintComponent(Graphics g) { 
+>>>>>>> master
+>>>>>>> master
 			super.paintComponent(g); //clears the screen and repaints it
 
 			Graphics2D g2 = (Graphics2D) g;
