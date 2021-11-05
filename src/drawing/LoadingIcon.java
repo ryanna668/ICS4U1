@@ -118,7 +118,7 @@ public class LoadingIcon implements KeyListener{
 		//constructor
 		DrawingPanel() {
 			//put background colour here
-			this.setBackground(new Color (30, 30, 30, 27));
+			this.setBackground(new Color (20,20,20, 20));
 		}
 
 
@@ -126,11 +126,13 @@ public class LoadingIcon implements KeyListener{
 
 
 		@Override
-		public void paintComponent(Graphics g) {
+		public void paintComponent(Graphics g) { 
 			super.paintComponent(g); //clears the screen and repaints it
 
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
+			
+
 
 			/******************/
 			/* BEGIN ROTATING */
@@ -153,7 +155,7 @@ public class LoadingIcon implements KeyListener{
 			//green
 			//g2.setColor(new Color(100,255,100));
 			//g2.rotate(angle, SIZE/2 , SIZE/2); 
-			g2.rotate(angle, 250 , 250);
+			//g2.rotate(angle, 250 , 250);
 			g2.fillRect(rect2.x,rect2.y, rect2.width, rect2.height);
 
 			//pink
