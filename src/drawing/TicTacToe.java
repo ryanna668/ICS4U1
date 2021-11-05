@@ -198,6 +198,7 @@ public class TicTacToe {
 		//******************* MouseListener methods *****************//
 		@Override
 		public void mouseClicked(MouseEvent e) {
+
 			int x = e.getX();
 			int y = e.getY();
 			
@@ -232,11 +233,15 @@ public class TicTacToe {
 				frame.setTitle("Welcome to TicTacToe! Have fun!");
 				keepwinning = true;
 				changetitle = true;
+<<<<<<< HEAD
 				restart = true;
 			}
 			
 			if(restart) {
 				restart = false;
+=======
+				filled = 0;
+>>>>>>> master
 			}
 
 			/*** put these in methods, maybe one master method ***/
@@ -247,14 +252,18 @@ final static playgame() { //what am i supposed to put here?
 
 
 			//TODO update board
-			if(turnX) {
-				board[row][col] = XX;
-			}
-			else {
-				board[row][col] = OO;
+			if(changetitle) {
+				if(e.getButton() == MouseEvent.BUTTON1) {
+					if(turnX) {
+						board[row][col] = XX;
+					}
+					else {
+						board[row][col] = OO;
 
+					}
+					turnX=!turnX;
+				}
 			}
-			turnX=!turnX;
 
 			//printBoard(); //debug
 
@@ -270,7 +279,11 @@ final static playgame() { //what am i supposed to put here?
 					{
 						frame.setTitle("X wins!! Right click to restart :)");
 						keepwinning = false;
+<<<<<<< HEAD
 						changetitle = false;
+=======
+						changetitle= false;
+>>>>>>> master
 
 					}
 					else if(board[i][0] + board[i][1] + board[i][2] == -3 || 
@@ -279,7 +292,11 @@ final static playgame() { //what am i supposed to put here?
 							board[2][0] + board [1][1] + board[0][2] == -3) {
 						frame.setTitle("O wins!! Right click to restart :)");
 						keepwinning = false;
+<<<<<<< HEAD
 						changetitle = false;
+=======
+						changetitle= false;
+>>>>>>> master
 					}
 				}
 
@@ -293,9 +310,20 @@ final static playgame() { //what am i supposed to put here?
 				for (int c = 0; c<GRID; c++) {
 					if (board[r][c] != EMPTY) {
 						filled++;
-					};
+					}
 				}
 			}
+<<<<<<< HEAD
+=======
+
+			//frame.setTitle("#" + filled); //debugging
+			if(changetitle) {
+				if(filled == 45) {
+					frame.setTitle("Tie!! Right click to restart :)");
+					changetitle = false;
+				}
+			}
+>>>>>>> master
 
 			//frame.setTitle("#" + filled); //debug
 				if(filled == 45) {
@@ -315,6 +343,10 @@ final static playgame() { //what am i supposed to put here?
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 		@Override
 		public void mousePressed(MouseEvent e) {}
 		@Override
