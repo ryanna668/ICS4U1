@@ -32,6 +32,8 @@ import javax.swing.JPanel;
  We'll see why later.
  */
 
+//edit
+
 public class TicTacToe {
 
 	//CONSTANTS
@@ -55,7 +57,9 @@ public class TicTacToe {
 
 	boolean turnX = true;
 
-
+	boolean keepwinning = true;
+	boolean changetitle = true;
+	int filled = 0;
 
 
 	public static void main(String[] args) {
@@ -201,12 +205,6 @@ public class TicTacToe {
 
 			int x = e.getX();
 			int y = e.getY();
-			
-			boolean restart = true;
-			int filled = 0;
-			boolean keepwinning = true;
-			boolean changetitle = true;
-
 
 
 			//calculate which square you clicked on
@@ -221,7 +219,6 @@ public class TicTacToe {
 						);
 			}
 			//how to check if click right mouse button
-			//right click restarts the game
 			if (e.getButton() == MouseEvent.BUTTON3) {
 				//restart the game
 				for(int p = 0; p<GRID; p++) {
@@ -233,20 +230,12 @@ public class TicTacToe {
 				frame.setTitle("Welcome to TicTacToe! Have fun!");
 				keepwinning = true;
 				changetitle = true;
-<<<<<<< HEAD
-				restart = true;
-			}
-			
-			if(restart) {
-				restart = false;
-=======
 				filled = 0;
->>>>>>> master
 			}
 
 			/*** put these in methods, maybe one master method ***/
 
-final static playgame() { //what am i supposed to put here?
+
 			//TODO Check if the square is empty
 			if (board[row][col] != EMPTY)return;
 
@@ -279,11 +268,7 @@ final static playgame() { //what am i supposed to put here?
 					{
 						frame.setTitle("X wins!! Right click to restart :)");
 						keepwinning = false;
-<<<<<<< HEAD
-						changetitle = false;
-=======
 						changetitle= false;
->>>>>>> master
 
 					}
 					else if(board[i][0] + board[i][1] + board[i][2] == -3 || 
@@ -292,11 +277,7 @@ final static playgame() { //what am i supposed to put here?
 							board[2][0] + board [1][1] + board[0][2] == -3) {
 						frame.setTitle("O wins!! Right click to restart :)");
 						keepwinning = false;
-<<<<<<< HEAD
-						changetitle = false;
-=======
 						changetitle= false;
->>>>>>> master
 					}
 				}
 
@@ -313,8 +294,6 @@ final static playgame() { //what am i supposed to put here?
 					}
 				}
 			}
-<<<<<<< HEAD
-=======
 
 			//frame.setTitle("#" + filled); //debugging
 			if(changetitle) {
@@ -323,14 +302,7 @@ final static playgame() { //what am i supposed to put here?
 					changetitle = false;
 				}
 			}
->>>>>>> master
 
-			//frame.setTitle("#" + filled); //debug
-				if(filled == 45) {
-					frame.setTitle("Tie!! Right click to restart :)");
-					changetitle = false;
-				}
-			
 			//TODO change turn
 
 
@@ -339,14 +311,9 @@ final static playgame() { //what am i supposed to put here?
 			printBoard();
 
 		}
-		}
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 		@Override
 		public void mousePressed(MouseEvent e) {}
 		@Override
