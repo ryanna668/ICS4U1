@@ -39,7 +39,7 @@ public class TicTacToe {
 	/*** you can set this to any size, but the winning only works for the top 3x3 corner ***/
 
 
-	final static Color COLOURGRID = (Color.decode("#ffffff"));	
+	final static Color COLOURGRID = (Color.decode("#ffffff"));	 
 	final static Color COLOURBACK = (Color.pink);
 
 	final static int XX = 1;
