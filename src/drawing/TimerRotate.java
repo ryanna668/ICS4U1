@@ -103,7 +103,7 @@ public class TimerRotate implements KeyListener{
                 public void actionPerformed(ActionEvent e) {
                         time++;
                         angle = angle + Math.toRadians(0.005); 
-                        line.rotate(angle);
+                        line.rotate(angle); 
                         mainPanel.repaint();
                 }
         }

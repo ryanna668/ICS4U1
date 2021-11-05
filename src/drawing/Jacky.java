@@ -25,7 +25,7 @@ import javax.swing.Timer;
 public class Jacky implements KeyListener{
 
 	public static void main(String[] args) { 
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() { 
 			@Override
 			public void run() {
 				new Jacky(); 

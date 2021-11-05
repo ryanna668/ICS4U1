@@ -194,7 +194,7 @@ public class LoadingIconPreliminary implements ActionListener {
 			}
 
 			g2.setColor(dotColour);
-			g2.setStroke(new BasicStroke(5));
+			g2.setStroke(new BasicStroke(5)); 
 			if (angle[0]<= 167) { //so lasers dont launch at very beginning of loop
 
 			
