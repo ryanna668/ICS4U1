@@ -1,4 +1,4 @@
-package drawing;
+package loadingIcon;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -16,6 +16,8 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+
 
 
 public class LoadingIcon implements KeyListener{
@@ -37,10 +39,21 @@ public class LoadingIcon implements KeyListener{
 	int rw = 100;
 	int rh = 100;
 
-	Rectangle rect1 = new Rectangle(100,100, rw, rh);
-	Rectangle rect2 = new Rectangle(300,100,rw, rh);
-	Rectangle rect3 = new Rectangle(100,300,rw, rh);
-	Rectangle rect4 = new Rectangle(300,300,rw, rh);
+	//Rectangle rect1 = new Rectangle(SIZE/6,SIZE/6, rw, rh);
+	//Rectangle rect2 = new Rectangle(SIZE*2/3,SIZE/6,rw, rh);
+	//Rectangle rect3 = new Rectangle(SIZE/6,SIZE*2/3,rw, rh));
+	//Rectangle rect3 = new Rectangle(SIZE*2/3,SIZE*2/3,rw, rh);
+
+	Box rect1 = new Box(SIZE/4,SIZE/4,rw, rh);
+	Box rect2 = new Box(SIZE*3/4,SIZE/4,rw, rh)	;
+	Box rect3 = new Box(SIZE/4,SIZE*3/4,rw, rh);
+	Box rect4 = new Box(SIZE*3/4,SIZE*3/4,rw, rh);
+
+	//	Box rect1 = new Box(125,125,rw, rh);
+	//	Box rect2 = new Box(425,125,rw, rh);
+	//	Box rect3 = new Box(125,435,rw, rh);
+	//	Box rect4 = new Box(425,425,rw, rh);
+
 
 
 	int lineX = 200;
@@ -49,7 +62,7 @@ public class LoadingIcon implements KeyListener{
 
 	//Window stuff
 	/** constant for size of JFrame */
-	static final int SIZE = 500;
+	static final int SIZE = 600;
 	/** drawing panel object that does all graphics */
 	DrawingPanel mainPanel = new DrawingPanel();
 
@@ -60,10 +73,9 @@ public class LoadingIcon implements KeyListener{
 	int time;       //just to display elapsed time. This should be compared with System.currentTimeMillis()
 
 	//Other objects and variables
-	Line line = new Line(100.0, 100.0, 300.0, 300.0); 
+	//Line line = new Line(100.0, 100.0, 300.0, 300.0); 
 
 	double angle = Math.toRadians(0.005);
-
 
 	/*****************************************
 	 *   Set up the window (JFrame)           *
@@ -113,12 +125,14 @@ public class LoadingIcon implements KeyListener{
 	}
 
 
+
+
 	private class DrawingPanel extends JPanel {
 
 		//constructor
 		DrawingPanel() {
 			//put background colour here
-			this.setBackground(new Color (20,20,20, 20));
+			this.setBackground(new Color (20,20,20));
 		}
 
 
@@ -151,7 +165,7 @@ public class LoadingIcon implements KeyListener{
 			//brown
 			g2.setColor(Color.white);
 			//g2.rotate(angle, rect1.width/2, rect1.height/2);
-			g2.rotate(angle, 250 , 250);  
+			g2.rotate(angle, SIZE/2 , SIZE/2);  
 			g2.fillRect(rect1.x,rect1.y, rect1.width, rect1.height);
 
 			//green
@@ -170,7 +184,7 @@ public class LoadingIcon implements KeyListener{
 			//g2.rotate(angle, SIZE/2 , SIZE/2); 
 			g2.fillRect(rect4.x,rect4.y, rect4.width, rect4.height);
 
-
+			g2.drawLine(0, 0, 600, 600);
 
 			//g2.drawLine(rect.x, rect.y, lineX,lineY);
 
