@@ -20,13 +20,13 @@ import javax.swing.Timer;
 
 
 
-public class LoadingIcon implements KeyListener{
+public class LoadingIcon2 implements KeyListener{
 
 	public static void main(String[] args) { 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new LoadingIcon(); 
+				new LoadingIcon2(); 
 			}
 		});
 	}
@@ -54,11 +54,9 @@ public class LoadingIcon implements KeyListener{
 	//	Box rect3 = new Box(125,435,rw, rh);
 	//	Box rect4 = new Box(425,425,rw, rh);
 
-	
-	String colors[] = new String [5];
-	
-	
-	int rand = (int) (Math.random()*5);
+	int red = (int)(Math.random()*100+1);
+	int green = (int)(Math.random()*255+1);
+	int blue = (int)(Math.random()*255+1);
 
 
 	static final int MOVE = 0;
@@ -94,7 +92,7 @@ public class LoadingIcon implements KeyListener{
 	 *   Set up the window (JFrame)           *
 	 *   and initialize whatever you need to  *
 	 *****************************************/
-	LoadingIcon() {
+	LoadingIcon2() {
 
 		//all window stuff
 		JFrame window = new JFrame("Loading...");
@@ -114,13 +112,6 @@ public class LoadingIcon implements KeyListener{
 		window.addKeyListener(this);
 
 		window.setVisible(true);
-		
-		//colors
-		colors[0]="#84A98C";
-		colors[1]="#E0BBE4";
-		colors[2]="#fad2e1";
-		colors[3]="#Ebde0fe";
-		colors[4]="#d8e2dc";
 
 		//all timer stuff (start after window is shown)
 		timer = new Timer(t_speed, new TimerAL());
@@ -194,7 +185,9 @@ public class LoadingIcon implements KeyListener{
 		if(time>660) {
 			time=0;
 			angle=0;
-			rand = (int) (Math.random()*5);
+			red = (int)(Math.random()*255+1);
+			green = (int)(Math.random()*255+1);
+			blue = (int)(Math.random()*255+1);
 
 		}
 	}
@@ -250,7 +243,7 @@ public class LoadingIcon implements KeyListener{
 
 			g2.rotate(angle, SIZE/2 , SIZE/2);  
 
-			g2.setColor(Color.decode(colors[rand])); //#ffffff
+			g2.setColor(new Color (red,green,blue));
 			g2.fillRect(rect1.x,rect1.y, rect1.width, rect1.height);
 
 			//green
@@ -269,7 +262,7 @@ public class LoadingIcon implements KeyListener{
 			//g2.rotate(angle, SIZE/2 , SIZE/2); 
 			g2.fillRect(rect4.x,rect4.y, rect4.width, rect4.height);
 
-			g.setColor(Color.white);
+			g.setColor(Color.pink);
 			g2.drawLine(rect1.x+rect1.height,rect1.y+rect1.width,rect4.x,rect4.y);
 			g2.drawLine(rect2.x,rect2.y+rect3.height,rect3.x+rect3.width,rect3.y);
 
