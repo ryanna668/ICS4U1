@@ -55,6 +55,11 @@ public class LoadingIcon implements KeyListener{
 	//	Box rect4 = new Box(425,425,rw, rh);
 
 
+	static final int MOVE = 0;
+	static final int STOP = 0;
+	static final int ROTATE = 0;
+
+	static int state = MOVE;
 
 	int lineX = 200;
 	int lineY = 200;
@@ -86,7 +91,7 @@ public class LoadingIcon implements KeyListener{
 		//all window stuff
 		JFrame window = new JFrame("Loading...");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(SIZE,SIZE);
+		//window.setSize(SIZE,SIZE);
 
 		/***********************************************************
 		 * This is how you get the monitor screen resolution size  *
@@ -94,11 +99,12 @@ public class LoadingIcon implements KeyListener{
 		 ***********************************************************/
 		// Dimension fullScreen = Toolkit.getDefaultToolkit().getScreenSize();
 		// window.setSize(fullScreen);
-
+		window.add(mainPanel);
+		window.pack();
 		window.setLocationRelativeTo(null);
 
 		window.addKeyListener(this);
-		window.add(mainPanel);
+
 		window.setVisible(true);
 
 		//all timer stuff (start after window is shown)
@@ -118,9 +124,22 @@ public class LoadingIcon implements KeyListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			time++;
+			if(angle<8) {
 			angle = angle + Math.toRadians(1.0); 
+			}
 			//line.rotate(angle);
 			mainPanel.repaint();
+
+			if(time>300) {
+				state = MOVE;
+				goIn();
+			}
+		}
+
+		public void goIn() {
+			if(state == MOVE)
+				rect1.x++;
+			rect1.y++;
 		}
 	}
 
@@ -129,10 +148,16 @@ public class LoadingIcon implements KeyListener{
 
 	private class DrawingPanel extends JPanel {
 
+		//from the note??
+		int panW = 600;
+		int panH = 600;
+
 		//constructor
 		DrawingPanel() {
 			//put background colour here
-			this.setBackground(new Color (20,20,20));
+			this.setBackground(new Color (20,20,20,20));
+
+			this.setPreferredSize(new Dimension(panW, panH));
 		}
 
 
@@ -141,7 +166,6 @@ public class LoadingIcon implements KeyListener{
 
 		@Override
 		public void paintComponent(Graphics g) { 
-
 
 			super.paintComponent(g); //clears the screen and repaints it
 
@@ -160,12 +184,17 @@ public class LoadingIcon implements KeyListener{
 			//			g2.setColor(Color.decode("#557571"));
 			//			g2.setStroke(new BasicStroke(4));
 			//			g2.drawLine(100,100,lineX,lineY );
-
+		
 
 			//brown
 			g2.setColor(Color.white);
+			g.drawString("ANGLE: " +angle, 10, 10);
 			//g2.rotate(angle, rect1.width/2, rect1.height/2);
-			g2.rotate(angle, SIZE/2 , SIZE/2);  
+
+			if (state == ROTATE) {
+				g2.rotate(angle, SIZE/2 , SIZE/2);  
+			}
+
 			g2.fillRect(rect1.x,rect1.y, rect1.width, rect1.height);
 
 			//green
@@ -184,7 +213,9 @@ public class LoadingIcon implements KeyListener{
 			//g2.rotate(angle, SIZE/2 , SIZE/2); 
 			g2.fillRect(rect4.x,rect4.y, rect4.width, rect4.height);
 
-			g2.drawLine(0, 0, 600, 600);
+			g.setColor(Color.pink);
+			g2.drawLine(rect1.x+rect1.height,rect1.y+rect1.width,rect4.x,rect4.y);
+			g2.drawLine(rect2.x,rect2.y+rect3.height,rect3.x+rect3.width,rect3.y);
 
 			//g2.drawLine(rect.x, rect.y, lineX,lineY);
 
@@ -194,6 +225,9 @@ public class LoadingIcon implements KeyListener{
 			//g.drawString("TIME1=" + time*t_speed, 50,50);
 
 			g2.dispose(); //only dispose of graphics objects that you have created
+
+		
+
 		}
 	}
 
