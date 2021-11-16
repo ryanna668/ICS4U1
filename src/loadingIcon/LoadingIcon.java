@@ -34,59 +34,32 @@ public class LoadingIcon implements KeyListener{
 	/****************
 	 *  Variables   *
 	 ****************/
-	//Rectangle rect[] = new Rectangle[4];
 
 	int rw = 100;
 	int rh = 100;
-
-	//Rectangle rect1 = new Rectangle(SIZE/6,SIZE/6, rw, rh);
-	//Rectangle rect2 = new Rectangle(SIZE*2/3,SIZE/6,rw, rh);
-	//Rectangle rect3 = new Rectangle(SIZE/6,SIZE*2/3,rw, rh));
-	//Rectangle rect3 = new Rectangle(SIZE*2/3,SIZE*2/3,rw, rh);
 
 	Box rect1 = new Box(SIZE/4,SIZE/4,rw, rh);
 	Box rect2 = new Box(SIZE*3/4,SIZE/4,rw, rh);
 	Box rect3 = new Box(SIZE/4,SIZE*3/4,rw, rh);
 	Box rect4 = new Box(SIZE*3/4,SIZE*3/4,rw, rh);
 
-	//	Box rect1 = new Box(125,125,rw, rh);
-	//	Box rect2 = new Box(425,125,rw, rh);
-	//	Box rect3 = new Box(125,435,rw, rh);
-	//	Box rect4 = new Box(425,425,rw, rh);
-
-	
-	String colors[] = new String [5];
-	
-	
-	int rand = (int) (Math.random()*5);
-
-
-	static final int MOVE = 0;
-	static final int STOP = 0;
-	static final int ROTATE = 0;
-
-
-
-	static int state = MOVE;
-
 	int lineX = 200;
 	int lineY = 200;
-	//int panW = 800, panH = 700;
+
+	int rand = (int) (Math.random()*5);
+	String colors[] = new String [9];
 
 	//Window stuff
-	/** constant for size of JFrame */
-	static final int SIZE = 600;
-	/** drawing panel object that does all graphics */
-	DrawingPanel mainPanel = new DrawingPanel();
+	JFrame window = new JFrame();
+	
+	static final int SIZE = 600; //constant for size of JFrame
+	DrawingPanel mainPanel = new DrawingPanel(); //drawing panel object that does all graphics
 
 	//Timer stuff
 	Timer timer;
-	private int t_speed = 10; //speed of timer repeats (ms)
+	private int t_speed = 7; //speed of timer repeats (ms)
 	int t_pause = 1000;  //initial delay (ms)
 	int time;       //just to display elapsed time. This should be compared with System.currentTimeMillis()
-
-	//Other objects and variables
-	//Line line = new Line(100.0, 100.0, 300.0, 300.0); 
 
 	double angle = Math.toRadians(0);
 
@@ -97,30 +70,26 @@ public class LoadingIcon implements KeyListener{
 	LoadingIcon() {
 
 		//all window stuff
-		JFrame window = new JFrame("Loading...");
+		window = new JFrame("Loading...");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//window.setSize(SIZE,SIZE);
 
-		/***********************************************************
-		 * This is how you get the monitor screen resolution size  *
-		 * and make your program take up the whole screen.         *
-		 ***********************************************************/
-		// Dimension fullScreen = Toolkit.getDefaultToolkit().getScreenSize();
-		// window.setSize(fullScreen);
 		window.add(mainPanel);
 		window.pack();
 		window.setLocationRelativeTo(null);
-
 		window.addKeyListener(this);
-
 		window.setVisible(true);
-		
-		//colors
-		colors[0]="#84A98C";
-		colors[1]="#E0BBE4";
-		colors[2]="#fad2e1";
-		colors[3]="#Ebde0fe";
-		colors[4]="#d8e2dc";
+
+		//colours
+		//I set my own array of "random" colours because the completely auto generated random colours were really ugly
+		colors[0]="#ffadad";
+		colors[1]="#ffd6a5";
+		colors[2]="#fdffb6";
+		colors[3]="#caffbf";
+		colors[4]="#9bf6ff";
+		colors[5]="#a0c4ff";
+		colors[6]="#bdb2ff";
+		colors[7]="#ffc6ff";
+		colors[8]="fffffc";
 
 		//all timer stuff (start after window is shown)
 		timer = new Timer(t_speed, new TimerAL());
@@ -148,19 +117,16 @@ public class LoadingIcon implements KeyListener{
 
 			if(degree>360) {
 
-				goIn();
+				move();
 			}
-
 		}
-
 	}
 
 
-	public void goIn() {
+	public void move() {
 
+		//going in
 		if(time<510) {
-
-
 
 			rect1.x++;
 			rect1.y++;
@@ -173,8 +139,12 @@ public class LoadingIcon implements KeyListener{
 
 			rect4.x--;
 			rect4.y--;
+			
+			window.setTitle("Loaded! What's the next colour going to be?");
+
 		}
 
+		//going out
 		if(time>510 && time<660) {
 
 			rect1.x--;
@@ -189,35 +159,26 @@ public class LoadingIcon implements KeyListener{
 			rect4.x++;
 			rect4.y++;
 
-
 		}
+
+		//reset
 		if(time>660) {
+
 			time=0;
 			angle=0;
 			rand = (int) (Math.random()*5);
-
+			window.setTitle("Loading...");
 		}
 	}
 
-
-
 	private class DrawingPanel extends JPanel {
-
-		//from the note??
-		int panW = 600;
-		int panH = 600;
 
 		//constructor
 		DrawingPanel() {
-			//put background colour here
+
 			this.setBackground(new Color (20,20,20,20));
-
-			this.setPreferredSize(new Dimension(panW, panH));
+			this.setPreferredSize(new Dimension(SIZE, SIZE));
 		}
-
-
-
-
 
 		@Override
 		public void paintComponent(Graphics g) { 
@@ -227,63 +188,25 @@ public class LoadingIcon implements KeyListener{
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 
-
-
-			/******************/
-			/* BEGIN ROTATING */
-			/******************/
-
-			// Rotating with a positive angle theta rotates points on the positive x axis toward the positive y axis,
-			// exactly the same as in math, but here +y is down so the rotation goes in the opposite direction.
-			//			//g2.rotate(angle, SIZE/2, SIZE/2); 
-			//			g2.setColor(Color.decode("#557571"));
-			//			g2.setStroke(new BasicStroke(4));
-			//			g2.drawLine(100,100,lineX,lineY );
-
-
-			//brown
-
-			g.drawString("ANGLE: " +angle, 10, 10);
-			g.drawString("TIME1=" + time*t_speed, 50,50);
-			//g2.rotate(angle, rect1.width/2, rect1.height/2);
-
+			//for looking at angle and time if needed
+			//g.drawString("ANGLE: " +angle, 10, 10);
+			//g.drawString("TIME1=" + time*t_speed, 50,50);
 
 			g2.rotate(angle, SIZE/2 , SIZE/2);  
 
-			g2.setColor(Color.decode(colors[rand])); //#ffffff
+			g2.setColor(Color.decode(colors[rand])); 
+			
 			g2.fillRect(rect1.x,rect1.y, rect1.width, rect1.height);
-
-			//green
-			//g2.setColor(new Color(100,255,100));
-			//g2.rotate(angle, SIZE/2 , SIZE/2); 
-			//g2.rotate(angle, 250 , 250);
 			g2.fillRect(rect2.x,rect2.y, rect2.width, rect2.height);
-
-			//pink
-			//g2.setColor(new Color(255,100,100));
-			//g2.rotate(angle, SIZE/2 , SIZE/2); 
 			g2.fillRect(rect3.x,rect3.y, rect3.width, rect3.height);
-
-			//grey
-			//g2.setColor(new Color(100,100,100));
-			//g2.rotate(angle, SIZE/2 , SIZE/2); 
 			g2.fillRect(rect4.x,rect4.y, rect4.width, rect4.height);
 
-			g.setColor(Color.white);
+			g2.setColor(Color.white);
+			g2.setStroke(new BasicStroke(3));
 			g2.drawLine(rect1.x+rect1.height,rect1.y+rect1.width,rect4.x,rect4.y);
 			g2.drawLine(rect2.x,rect2.y+rect3.height,rect3.x+rect3.width,rect3.y);
 
-			//g2.drawLine(rect.x, rect.y, lineX,lineY);
-
-			//g2.drawLine(rect.x+rect.width, rect.y+rect.height, lineX,lineY);
-
-			//g2.rotate(-angle, line.cx, line.cy);
-
-
 			g2.dispose(); //only dispose of graphics objects that you have created
-
-
-
 		}
 	}
 
