@@ -1,3 +1,11 @@
+/*
+ * Ryanna Luo
+ * Nov 17, 2021
+ * Welcome to my loading icon. 
+ * The boxes rotate and then collapse into each other.
+ * The colour and window title change.
+ */
+
 package loadingIcon;
 
 import java.awt.BasicStroke;
