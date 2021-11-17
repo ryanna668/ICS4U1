@@ -1,9 +1,9 @@
 /*
  * Ryanna Luo
  * Nov 17, 2021
- * Welcome to my loading icon. 
+ * Welcome to my loading icon :) 
  * The boxes rotate and then collapse into each other.
- * The colour and window title change.
+ * The colour and window title change with every reset.
  */
 
 package loadingIcon;
@@ -45,11 +45,16 @@ public class LoadingIcon implements KeyListener{
 
 	int rw = 100;
 	int rh = 100;
-
+	
 	Box rect1 = new Box(SIZE/4,SIZE/4,rw, rh);
 	Box rect2 = new Box(SIZE*3/4,SIZE/4,rw, rh);
 	Box rect3 = new Box(SIZE/4,SIZE*3/4,rw, rh);
 	Box rect4 = new Box(SIZE*3/4,SIZE*3/4,rw, rh);
+	
+//	Rectangle rect1 = new Rectangle (SIZE/4,SIZE/4,rw, rh);
+//	Rectangle rect2 = new Rectangle(SIZE*3/4,SIZE/4,rw, rh);
+//	Rectangle rect3 = new Rectangle(SIZE/4,SIZE*3/4,rw, rh);
+//	Rectangle rect4 = new Rectangle(SIZE*3/4,SIZE*3/4,rw, rh);
 
 	int lineX = 200;
 	int lineY = 200;

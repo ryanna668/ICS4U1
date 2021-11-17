@@ -1,6 +1,20 @@
+/*
+ * Ryanna Luo
+ * Nov 17, 2021
+ * Welcome to me tictactoe game.
+ * I went further than just checking for the winner, loser and tie.
+ * If you just check for the winner/loser/tie, players can keep placing Xs and Os down and repeatedly change the outcome and title.
+ * 
+ * I made it so:
+ * When someone wins or ties, the game ENDS.
+ * Players cannot place more Xs and Os down and the winner/tie title stays on.
+ * The title displaying the coordinates pauses (until the game restarts).
+ * Right click once to clear board and reset game (title changes back to "Welcome...")
+ * 
+ * Hope you enjoy playing :)
+ */
+
 package drawing;
-
-
 
 import java.awt.BasicStroke;
 
@@ -19,20 +33,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/***********************************************
- This is the skeleton for a TicTacToe game using Swing.
-
- Look over this and see if you have any questions so far.
-
- We're going to start with just the graphics part.
- But we're also going to store the data. The data will be stored as a grid 
- or 2D array of integers. 
-
- For TicTacToe, it make sense to have empty = 0, and then X and O be +/- 1
- We'll see why later.
- */
-
-//edit
 
 public class TicTacToe {
 
@@ -134,7 +134,7 @@ public class TicTacToe {
 			jpanW = this.getSize().width;		
 			jpanH = this.getSize().height;	
 
-			//TODO Find the size of each box in pixels.  Set boxW, boxH
+			//Find the size of each box in pixels.  Set boxW, boxH
 			boxW = jpanW/GRID;
 			boxH = jpanH/GRID;
 
@@ -147,7 +147,7 @@ public class TicTacToe {
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			initGraphics(); //needed if the window is resized.
 
-			//TODO Draw grid
+			//Draw grid
 			g.setColor(COLOURGRID);	
 			g2.setStroke(new BasicStroke(2));
 
@@ -158,11 +158,6 @@ public class TicTacToe {
 				//vertical
 				g2.drawLine(0, i*boxH, jpanW, i*boxH);
 			}
-
-
-
-			//TODO draw all X and Os
-
 
 
 			//Check every square in board[][] and draw an X or O there.
@@ -197,8 +192,6 @@ public class TicTacToe {
 
 
 
-		//FIXME why does it take two clicks?
-
 		//******************* MouseListener methods *****************//
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -211,7 +204,7 @@ public class TicTacToe {
 			int col = x/boxW;
 			int row = y/boxH;
 
-			//TODO display mouse coords and grid square in title.
+			//display mouse coords and grid square in title.
 			if(changetitle) {
 				frame.setTitle(x+ "," + y
 						+ "  ("+ row + "," + col + ")"
@@ -236,11 +229,11 @@ public class TicTacToe {
 			/*** put these in methods, maybe one master method ***/
 
 
-			//TODO Check if the square is empty
+			//Check if the square is empty
 			if (board[row][col] != EMPTY)return;
 
 
-			//TODO update board
+			//update board
 			if(changetitle) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
 					if(turnX) {
@@ -256,7 +249,7 @@ public class TicTacToe {
 
 			//printBoard(); //debug
 
-			//TODO check for the winner
+			//check for the winner
 
 			//check rows
 			if(keepwinning) {
@@ -285,7 +278,7 @@ public class TicTacToe {
 
 
 
-			//TODO check for tie
+			//check for tie
 
 			for (int r = 0; r<GRID;r++) {
 				for (int c = 0; c<GRID; c++) {
@@ -302,9 +295,6 @@ public class TicTacToe {
 					changetitle = false;
 				}
 			}
-
-			//TODO change turn
-
 
 
 			this.repaint();
