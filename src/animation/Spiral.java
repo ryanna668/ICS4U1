@@ -1,4 +1,4 @@
-package drawing;
+package animation;
 
 //Author: Michael Harwood.
 //Date: Dec 2019.

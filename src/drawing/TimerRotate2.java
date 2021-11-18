@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import animation.Line;
+
 /**
  * This program demonstrates how to rotate a line ...
  * timers ...

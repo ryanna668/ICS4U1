@@ -6,7 +6,7 @@
  * rotate back to its original position and start the whole process again. Button space is used to
  * stop the timer, hence stop the icon.
  */
-package drawing;
+package animation;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

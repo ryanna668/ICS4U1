@@ -1,4 +1,4 @@
-package drawing;
+package arraylist_assignment;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

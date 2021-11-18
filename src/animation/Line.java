@@ -1,4 +1,4 @@
-package drawing;
+package animation;
 import java.awt.Graphics;
 
 /** 
