@@ -63,7 +63,7 @@ public class MapLakeContinent
 		for (i = 0 ; i<GRID; i++) {
 			for(j = 0; j <GRID; j++) {
 				int rand = (int) (Math.random()*100+1);
-				if(rand>50) {
+				if(rand>60) {
 					board[i][j] = LAND;
 				}
 			}
