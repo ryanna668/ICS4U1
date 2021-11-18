@@ -78,15 +78,54 @@ public class MapLakeContinent
 	void findLakes(int x, int y) {
 		//call subroutine to colour in all contiguous lake squares
 
-		if (board[x][y] == EMPTY) board[x][y] = LAKE;
-		/*
+		if (board[x][y] == EMPTY) {
+			board[x][y] = LAKE;
+		}
 
-		if (... square is on the edge of the board) findOceans(x,y);  
+		if(board[x][y] == LAKE) {
 
-		 */
+			//right
+			if(x+1<GRID && board[x+1][y]==EMPTY) {
+				board[x+1][y]=LAKE;
+				findLakes(x+1, y);
+			}
+
+			//left
+			if(x-1>=0 && board[x-1][y]==EMPTY ) {
+				board[x-1][y]=LAKE;
+				findLakes(x-1,y);
+			}
+
+			//down
+			if( y+1 < GRID && board[x][y+1]==EMPTY) {
+				board[x][y+1]=LAKE;
+				findLakes(x,y+1);
+			}
+
+			//up
+			if(y-1>=0 && board[x][y-1]==EMPTY) {
+				board[x][y-1]=LAKE;
+				findLakes(x,y-1);
+			}
+
+		}
 	}
 
+	void findOceans(int x, int y){
+			board[x][y] = OCEAN;
+			
+			if(board[x][y] == OCEAN) {
 
+
+			}
+		}
+			
+			
+			
+		
+		//if (... square is on the edge of the board) findOceans(x,y);  
+
+	
 	void createAndShowGUI() {
 		DrawingPanel panel = new DrawingPanel();
 

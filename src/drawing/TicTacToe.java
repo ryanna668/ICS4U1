@@ -57,8 +57,8 @@ public class TicTacToe {
 
 	boolean turnX = true;
 
-	boolean keepwinning = true;
-	boolean changetitle = true;
+	boolean keepPlaying = true;
+	boolean changeTitle = true;
 	int filled = 0;
 
 
@@ -205,7 +205,7 @@ public class TicTacToe {
 			int row = y/boxH;
 
 			//display mouse coords and grid square in title.
-			if(changetitle) {
+			if(changeTitle) {
 				frame.setTitle(x+ "," + y
 						+ "  ("+ row + "," + col + ")"
 
@@ -221,9 +221,11 @@ public class TicTacToe {
 				}
 
 				frame.setTitle("Welcome to TicTacToe! Have fun!");
-				keepwinning = true;
-				changetitle = true;
+				keepPlaying = true;
+				changeTitle = true;
 				filled = 0;
+				this.repaint();
+				return;
 			}
 
 			/*** put these in methods, maybe one master method ***/
@@ -234,7 +236,7 @@ public class TicTacToe {
 
 
 			//update board
-			if(changetitle) {
+			if(changeTitle) {
 				if(e.getButton() == MouseEvent.BUTTON1) {
 					if(turnX) {
 						board[row][col] = XX;
@@ -252,7 +254,7 @@ public class TicTacToe {
 			//check for the winner
 
 			//check rows
-			if(keepwinning) {
+			if(keepPlaying) {
 				for(int i = 0; i < 3; i++) {
 					if(board[i][0]+ board[i][1] + board[i][2] == 3 || //rows
 							board[0][i] + board[1][i] + board[2][i] == 3 || //columns
@@ -260,8 +262,8 @@ public class TicTacToe {
 							board[2][0] + board [1][1] + board[0][2] == 3) //diagonal
 					{
 						frame.setTitle("X wins!! Right click to restart :)");
-						keepwinning = false;
-						changetitle= false;
+						keepPlaying = false;
+						changeTitle= false;
 
 					}
 					else if(board[i][0] + board[i][1] + board[i][2] == -3 || 
@@ -269,8 +271,8 @@ public class TicTacToe {
 							board[0][0] + board[1][1]+ board[2][2] == -3 ||
 							board[2][0] + board [1][1] + board[0][2] == -3) {
 						frame.setTitle("O wins!! Right click to restart :)");
-						keepwinning = false;
-						changetitle= false;
+						keepPlaying = false;
+						changeTitle= false;
 					}
 				}
 
@@ -279,7 +281,7 @@ public class TicTacToe {
 
 
 			//check for tie
-
+			filled = 0;
 			for (int r = 0; r<GRID;r++) {
 				for (int c = 0; c<GRID; c++) {
 					if (board[r][c] != EMPTY) {
@@ -289,10 +291,10 @@ public class TicTacToe {
 			}
 
 			//frame.setTitle("#" + filled); //debugging
-			if(changetitle) {
-				if(filled == 45) {
+			if(changeTitle) {
+				if(filled == 9) {
 					frame.setTitle("Tie!! Right click to restart :)");
-					changetitle = false;
+					changeTitle = false;
 				}
 			}
 

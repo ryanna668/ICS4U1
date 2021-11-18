@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.Timer;
+
 
 
 public class EndlessBall implements ActionListener {
@@ -15,7 +15,7 @@ public class EndlessBall implements ActionListener {
 
 	static final int PANW = 800;
 	static final int PANH = 700;
-	DrawingPanel panel = new DrawingPanel();
+	DrawingPanel mainPanel = new DrawingPanel();
 	Ball ball = new Ball(300,100,40,40);
 
 
@@ -38,7 +38,16 @@ public class EndlessBall implements ActionListener {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );				
 
-		frame.add(panel);
+		frame.add(mainPanel);
+		
+		//set up bottom panel
+		JPanel panelS = new JPanel();
+		panelS.setBackground(Color.YELLOW);
+		panelS.add(new JLabel("SOUTH PANEL"));
+		frame.add(panelS, BorderLayout.SOUTH);
+		
+	
+		
 
 		frame.pack(); //let panel set the size
 		frame.setLocationRelativeTo(null);  
@@ -74,7 +83,7 @@ public class EndlessBall implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		moveBall();
-		panel.repaint();
+		mainPanel.repaint();
 
 
 	}
