@@ -68,8 +68,6 @@ public class MapLakeContinent
 				}
 			}
 		}
-
-
 	}
 
 	//PROBLEM 2: Fix the function "findLakes()" so that it colours all empty squares that are adjacent to this one.
@@ -107,25 +105,25 @@ public class MapLakeContinent
 				board[x][y-1]=LAKE;
 				findLakes(x,y-1);
 			}
-
 		}
 	}
 
 	void findOceans(int x, int y){
-			board[x][y] = OCEAN;
-			
-			if(board[x][y] == OCEAN) {
-
-
-			}
-		}
-			
-			
-			
+		board[x][y] = OCEAN;
 		
-		//if (... square is on the edge of the board) findOceans(x,y);  
+		if(x+1>GRID) {
+			board[x][y]=OCEAN;
+			findOceans(x, y);
+		}
 
-	
+	}
+
+
+
+
+	//if (... square is on the edge of the board) findOceans(x,y);  
+
+
 	void createAndShowGUI() {
 		DrawingPanel panel = new DrawingPanel();
 
