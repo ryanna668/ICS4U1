@@ -75,12 +75,20 @@ public class MapLakeContinent
 	//           of a lake touches the edge of the board it becomes an ocean.	
 	void findLakes(int x, int y) {
 		//call subroutine to colour in all contiguous lake squares
-
+		
+		// Edge check
+		if (x == (GRID - 1) || x == 0 || y == (GRID - 1) || y == 0) {
+			findOceans(x, y);
+			return;
+		}
+		
 		if (board[x][y] == EMPTY) {
 			board[x][y] = LAKE;
 		}
 
 		if(board[x][y] == LAKE) {
+		
+			
 
 			//right
 			if(x+1<GRID && board[x+1][y]==EMPTY) {
@@ -109,14 +117,42 @@ public class MapLakeContinent
 	}
 
 	void findOceans(int x, int y){
-		board[x][y] = OCEAN;
-		
-		if(x+1>GRID) {
-			board[x][y]=OCEAN;
-			findOceans(x, y);
+
+
+		if (board[x][y] == EMPTY || board[x][y] == LAKE) {
+			board[x][y] = OCEAN;
 		}
 
+		if(board[x][y] == OCEAN) {
+
+			//right
+			if(x+1<GRID && (board[x+1][y]==EMPTY || board[x+1][y] == LAKE)){
+				board[x+1][y]=OCEAN;
+				findOceans(x+1, y);
+			}
+
+			//left
+			if(x-1>=0 && (board[x-1][y]==EMPTY || board[x-1][y] == LAKE)) {
+				board[x-1][y]=OCEAN;
+				findOceans(x-1,y);
+			}
+
+			//down
+			if( y+1 < GRID && (board[x][y+1]==EMPTY || board[x][y+1] == LAKE)) {
+				board[x][y+1]=OCEAN;
+				findOceans(x,y+1);
+			}
+
+			//up
+			if(y-1>=0 && (board[x][y-1]==EMPTY || board[x][y-1] == LAKE)) {
+				board[x][y-1]=OCEAN;
+				findOceans(x,y-1);
+			}
+
+		}
 	}
+
+
 
 
 
