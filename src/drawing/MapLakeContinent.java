@@ -1,3 +1,12 @@
+/*
+ * Ryanna Luo
+ * Nov 29, 2021
+ * MapLakeContinent Program 
+ * I finished all questions (#1-4)
+ * Land is clumped into continents or completely random scattered land, lakes form when clicked, oceans form when clicked and it hits the edge of the screen.
+ */
+
+
 package drawing;
 
 import java.awt.*;
@@ -13,8 +22,8 @@ public class MapLakeContinent
 	}
 
 	//constants	
-	final static int GRID = 32; //size of grid/board
-	final static int SQSIZE = 23; // size of each square in pixels
+	final static int GRID = 35; //size of grid/board
+	final static int SQSIZE = 20; // size of each square in pixels
 	final static int NUM_LAND = (GRID * GRID /2); //number of land tiles
 
 	//terrain
@@ -22,6 +31,7 @@ public class MapLakeContinent
 	final static int LAND = 1;		//contant for land tile
 	final static int LAKE = 33;		//this is just any number used for LAKE and OCEAN
 	final static int OCEAN = 89;
+
 	//colours: you can change these
 	final static Color COLOURBACK = new Color(242,242,242);	
 	final static Color COLOUREMPTY = new Color(222,222,222);
@@ -37,8 +47,8 @@ public class MapLakeContinent
 		createAndShowGUI();
 	}
 
-	//PROBLEM 4: When half of the squares are land, the land is scattered quite a lot into little islands.
-	//           Find a way to make a random map that has the land in bigger chunks.
+	//When half of the squares are land, the land is scattered quite a lot into little islands.
+	//Make a random map that has the land in bigger chunks. (makeContinents)
 	void initGame() {		
 		//clear board
 		for (int i=0;i<GRID;i++) {
@@ -47,48 +57,98 @@ public class MapLakeContinent
 			}
 		}
 
-		makeRandomMap();
-		// makeContinents();	//this doesn't exist yet. It is for Problem#4.
+		//pick and choose :)
+		//makeRandomMap();
+		makeContinents();
 	}
+
+
 
 	void makeRandomMap() {
 		int i,j;
 		i=j=0;
-		boolean done = false;
-		int landTiles = 0;
+		//boolean done = false;
+		//int landTiles = 0;
 
-		//PROBLEM 1: Make an equal number of land and water squares, but make sure that the land is randomly distributed.
+		//Make an equal number of land and water squares, but make sure that the land is randomly distributed.
 
 
 		for (i = 0 ; i<GRID; i++) {
 			for(j = 0; j <GRID; j++) {
 				int rand = (int) (Math.random()*100+1);
-				if(rand>60) {
+				if(rand>50) {
 					board[i][j] = LAND;
 				}
 			}
 		}
 	}
+	void makeContinents(){
 
-	//PROBLEM 2: Fix the function "findLakes()" so that it colours all empty squares that are adjacent to this one.
-	//PROBLEM 3: Once you have solved problem 2, now set things up so that if any part 
+		int i,j;
+
+		for (i = 0 ; i<GRID; i++) {
+			for(j = 0; j <GRID; j++) {
+				int rand = (int) (Math.random()*100+1);
+				if(rand>80) {
+					board[i][j] = LAND;
+					Continents(i,j);
+				}
+			}
+		}
+	}
+
+	void Continents(int x, int y) {
+		int rand = (int) (Math.random()*100+1);
+
+		if(rand>70) {
+			if(board[x][y] == LAND) {
+
+				//right
+				if(x+1<GRID && board[x+1][y]==EMPTY) {
+					board[x+1][y]=LAND;
+					Continents(x+1, y);
+				}
+
+				//left
+				if(x-1>=0 && board[x-1][y]==EMPTY ) {
+					board[x-1][y]=LAND;
+					Continents(x-1,y);
+				}
+
+				//down
+				if( y+1 < GRID && board[x][y+1]==EMPTY) {
+					board[x][y+1]=LAND;
+					Continents(x,y+1);
+				}
+
+				//up
+				if(y-1>=0 && board[x][y-1]==EMPTY) {
+					board[x][y-1]=LAND;
+					Continents(x,y-1);
+				}
+			}
+		}
+	}
+
+	//Fix the function "findLakes()" so that it colours all empty squares that are adjacent to this one.
+	//Once you have solved problem 2, now set things up so that if any part 
 	//           of a lake touches the edge of the board it becomes an ocean.	
 	void findLakes(int x, int y) {
 		//call subroutine to colour in all contiguous lake squares
-		
+
 		// Edge check
 		if (x == (GRID - 1) || x == 0 || y == (GRID - 1) || y == 0) {
 			findOceans(x, y);
 			return;
 		}
-		
+
 		if (board[x][y] == EMPTY) {
 			board[x][y] = LAKE;
 		}
 
 		if(board[x][y] == LAKE) {
-		
-			
+
+
 
 			//right
 			if(x+1<GRID && board[x+1][y]==EMPTY) {
@@ -152,12 +212,6 @@ public class MapLakeContinent
 		}
 	}
 
-
-
-
-
-
-	//if (... square is on the edge of the board) findOceans(x,y);  
 
 
 	void createAndShowGUI() {

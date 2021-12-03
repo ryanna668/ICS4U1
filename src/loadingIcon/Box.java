@@ -1,7 +1,7 @@
 /* 
  * Ryanna Luo
  * Nov 17, 2021
- * Apart of the loading icon assignment
+ * A part of the loading icon assignment
  */
 
 package loadingIcon;

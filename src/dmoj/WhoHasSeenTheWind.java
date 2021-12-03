@@ -23,7 +23,7 @@ public class WhoHasSeenTheWind {
 
 		}
 
-		if(A>0 || t>M) {
+		if(A>0) {
 			System.out.print("The balloon does not touch ground in the given time.");
 		}
 
