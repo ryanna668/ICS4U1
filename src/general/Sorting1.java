@@ -16,7 +16,9 @@ public class Sorting1 {
 
 		printarray();
 
-		sort();
+		//sort();
+		
+		ameliaSort();
 
 		printsorted();
 
@@ -34,8 +36,8 @@ public class Sorting1 {
 	}
 
 	static void sort() {
-		for (int i=0; i<num.length; i++) {
-			for(int k=0; k<i; k++) {
+		for (int i=0; i < num.length; i++) {
+			for(int k=0; k < i; k++) {
 				if (num[k] > num[i]) {
 
 					hold = num[i];
@@ -44,7 +46,20 @@ public class Sorting1 {
 				}
 			}
 		}
-	}	
+	}
+	
+	static void ameliaSort () {
+		for (int i = 0; i < num.length - 1; i++) {
+			for(int k = 0; k < num.length - 1; k++) {
+				if (num[k] > num[k + 1]) {
+
+					hold = num[k];
+					num[k] = num[k + 1];
+					num[k + 1]= hold;
+				}
+			}
+		}
+	}
 	
 	static void sort2() {
 		for (int i=0; i<num.length; i++) {
