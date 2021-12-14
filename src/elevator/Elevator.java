@@ -1,3 +1,10 @@
+/*
+ * Ryanna Luo
+ * Dec 1, 2021
+ * Elevator.java contains all of the properties and methods that create 
+ * and control the elevator.
+ */
+
 package elevator;
 
 class Elevator {
@@ -5,7 +12,7 @@ class Elevator {
 	private final static int TOPFLOOR = 19;
 	private final static int MAXOCCUPANTS = 25;
 
-	static boolean powerOn = true;
+	static boolean powerOn = true; 
 
 	private int floor = 1;
 	private int people = 0;
@@ -70,12 +77,17 @@ class Elevator {
 			System.out.println("Error: door is not closed");
 			return;
 		}
+		floor-=n;
 	}
 
 	//GO TO FLOOR N
 	void goToFloor (int n) {
 		if(n> TOPFLOOR) {
 			System.out.println("Error: cannot go above top floor.");
+			return;
+		}
+		if(n<0) {
+			System.out.println("Error: cannot go below bottom floor.");
 			return;
 		}
 		if(!powerOn) {
