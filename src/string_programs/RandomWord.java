@@ -16,16 +16,16 @@ public class RandomWord {
 		//runs as many times as the person wants
 		for(int i = 1; i <= inputNum; i++)
 		{
-			System.out.println("#" + i + ") " + makeWord());
+			System.out.println(i + ") " + makeWord());
 		}
 	}
 	
 	static String makeWord(){
 		//grab either one or two vowels
-		int vowelCount = (int) (Math.random() * 2) + 1;
+		int NumberOfVowels = (int) (Math.random() * 2) + 1;
 		String word = "";
 		//loop to create random letters that arent vowels
-		for(int i = 0; i < 6 - vowelCount; i++)
+		for(int i = 0; i < 6 - NumberOfVowels; i++)
 		{
 			while(true)
 			{
