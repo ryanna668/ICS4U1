@@ -1,6 +1,6 @@
 /*
  * Ryanna Luo
- * Dec 1, 2021
+ * Jan 12 2022
  * Elevator.java contains all of the properties and methods that create 
  * and control the elevator.
  */
@@ -43,7 +43,7 @@ class Elevator {
 	}
 
 
-	void elevator(String name){
+	void setElevatorName(String name){
 		this.name = name;
 	}
 

@@ -1,6 +1,6 @@
 /*
  * Ryanna Luo
- * Dec 1, 2021
+ * Jan 12 2022
  * ElevTest.java is a class which has the main() method. 
  * This class will create the elevators and make them do things.
  * The elevator can move up and down, add and remove people, power on and off...
@@ -44,8 +44,8 @@ public class ElevTest {
 		Elevator east = new Elevator(5);
 
 		//name elevators
-		south.elevator("South");
-		east.elevator("East");
+		south.setElevatorName("South");
+		east.setElevatorName("East");
 
 		//1. print
 		System.out.println("1");
